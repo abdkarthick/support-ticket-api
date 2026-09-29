@@ -1,0 +1,135 @@
+### 1. REGISTER CUSTOMER
+POST http://127.0.0.1:8000/api/register
+Content-Type: application/json
+
+{
+  "name": "Arun Customer",
+  "email": "customer@gmail.com",
+  "password": "password",
+  "password_confirmation": "password",
+  "role": "customer"
+}
+
+### 2. REGISTER AGENT
+POST http://127.0.0.1:8000/api/register
+Content-Type: application/json
+
+{
+  "name": "Ravi Agent",
+  "email": "agent@gmail.com",
+  "password": "password",
+  "password_confirmation": "password",
+  "role": "agent"
+}
+
+### 3. LOGIN CUSTOMER
+POST http://127.0.0.1:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "customer@gmail.com",
+  "password": "password"
+}
+
+### 4. LOGIN AGENT - Token copy pannunga Sir!
+POST http://127.0.0.1:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "agent@gmail.com",
+  "password": "password"
+}
+
+### 5. GET ME - Token paste pannunga Sir
+GET http://127.0.0.1:8000/api/me
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Accept: application/json
+
+### 6. CREATE TICKET 1
+POST http://127.0.0.1:8000/api/tickets
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Content-Type: application/json
+Accept: application/json
+
+{
+  "subject": "Login not working",
+  "description": "My login page shows 500 error when I try to login",
+  "priority": "high"
+}
+
+### 7. CREATE TICKET 2
+POST http://127.0.0.1:8000/api/tickets
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Content-Type: application/json
+Accept: application/json
+
+{
+  "subject": "Payment failed",
+  "description": "Payment deducted but ticket not generated",
+  "priority": "medium"
+}
+
+### 8. GET ALL TICKETS
+GET http://127.0.0.1:8000/api/tickets
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Accept: application/json
+
+### 9. GET SINGLE TICKET - ID 1
+GET http://127.0.0.1:8000/api/tickets/1
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Accept: application/json
+
+### 10. UPDATE TICKET - Customer can update subject
+PUT http://127.0.0.1:8000/api/tickets/1
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Content-Type: application/json
+Accept: application/json
+
+{
+  "subject": "Login not working - Urgent"
+}
+
+### 11. UPDATE STATUS - Agent mattum mudiyum
+PUT http://127.0.0.1:8000/api/tickets/1
+Authorization: Bearer PASTE_AGENT_TOKEN_HERE
+Content-Type: application/json
+Accept: application/json
+
+{
+  "status": "in_progress"
+}
+
+### 12. REPLY TO TICKET - Customer reply
+POST http://127.0.0.1:8000/api/tickets/1/replies
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Content-Type: application/json
+Accept: application/json
+
+{
+  "message": "Please fix fast sir, urgent"
+}
+
+### 13. REPLY TO TICKET - Agent reply
+POST http://127.0.0.1:8000/api/tickets/1/replies
+Authorization: Bearer PASTE_AGENT_TOKEN_HERE
+Content-Type: application/json
+Accept: application/json
+
+{
+  "message": "We are working on it sir, will fix in 2 hours"
+}
+
+### 14. GET ALL REPLIES OF TICKET 1
+GET http://127.0.0.1:8000/api/tickets/1/replies
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Accept: application/json
+
+### 15. LOGOUT
+POST http://127.0.0.1:8000/api/logout
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Accept: application/json
+
+### 16. DELETE TICKET
+DELETE http://127.0.0.1:8000/api/tickets/2
+Authorization: Bearer PASTE_CUSTOMER_TOKEN_HERE
+Accept: application/json
