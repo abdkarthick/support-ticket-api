@@ -54,7 +54,7 @@ class Ticket extends Model
 
     public function isBreached(): bool
     {
-        return $this->breached_at !== null || 
-               ($this->sla_deadline && now()->greaterThan($this->sla_deadline) && !in_array($this->status, ['resolved','closed']));
+        return $this->breached_at !== null ||
+               ($this->sla_deadline && now()->greaterThan($this->sla_deadline) && ! in_array($this->status, ['resolved', 'closed']));
     }
 }

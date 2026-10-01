@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('activity_logs', function (Blueprint $table) {
@@ -18,13 +15,12 @@ return new class extends Migration
             $table->string('action'); // assigned, status_changed, replied, sla_breached, created
             $table->string('old_value')->nullable();
             $table->string('new_value')->nullable();
+            $table->json('old_data')->nullable();
+            $table->json('new_data')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('activity_logs');
