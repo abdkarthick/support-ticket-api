@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,9 +31,16 @@ class User extends Authenticatable
         ];
     }
 
+    // Tickets created by user (customer)
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    // Tickets assigned to this user (agent)
+    public function assignedTickets()
+    {
+        return $this->hasMany(Ticket::class, 'assigned_to');
     }
 
     public function replies()
